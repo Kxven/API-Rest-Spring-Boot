@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/v1/hello")
 public class HelloWorldController{
+
+
+    //Essa classe é somente um estudo das possiveis formas de eu mapear e os tipos de retorno possiveis de um controller
+
+
     /*@GetMapping
     public String HelloWorld(){
         return "Hello Wolrd";
@@ -59,7 +64,5 @@ public class HelloWorldController{
     public String post(@RequestBody String name){
         return "Hello World" + name;
     }
-
-
 
 }
