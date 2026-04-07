@@ -1,6 +1,7 @@
 package br.com.keven.spring_boot_essentials.service;
 
 import br.com.keven.spring_boot_essentials.database.model.ProdutoEntity;
+import br.com.keven.spring_boot_essentials.dto.ProdutoDTO;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -41,4 +42,21 @@ public class ProdutoService {
     public List<ProdutoEntity> findAll(){
         return new ArrayList<>(PRODUTOS);
     }
+
+    public ProdutoEntity createProduct(ProdutoDTO produtoDTO){
+        Integer identifier = PRODUTOS.stream()
+                .mapToInt(ProdutoEntity::getId)
+                .max()
+                .orElse(0) + 1;
+        ProdutoEntity newProduct = ProdutoEntity.builder()
+                .id(identifier)
+                .name(produtoDTO.getName())
+                .preco(produtoDTO.getPreco())
+                .quantidade(produtoDTO.getQuantidade())
+                .build();
+
+        PRODUTOS.add(newProduct);
+        return newProduct;
+    }
+
 }
