@@ -30,4 +30,11 @@ public class ProdutoController {
     public ProdutoEntity createProduct(@RequestBody ProdutoDTO produtoDTO){
         return produtoService.createProduct(produtoDTO);
     }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ProdutoEntity updateProduct(@PathVariable Integer id,
+                                       @RequestBody ProdutoDTO produtoDTO){
+        return produtoService.updateProduct(produtoDTO, id);
+    }
 }
