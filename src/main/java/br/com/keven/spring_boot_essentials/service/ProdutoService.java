@@ -2,6 +2,7 @@ package br.com.keven.spring_boot_essentials.service;
 
 import br.com.keven.spring_boot_essentials.database.model.ProdutoEntity;
 import br.com.keven.spring_boot_essentials.dto.ProdutoDTO;
+import br.com.keven.spring_boot_essentials.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -58,11 +59,11 @@ public class ProdutoService {
         PRODUTOS.add(newProduct);
         return newProduct;
     }
-    public ProdutoEntity updateProduct(ProdutoDTO produtoDTO, Integer id){
+    public ProdutoEntity updateProduct(ProdutoDTO produtoDTO, Integer id) throws NotFoundException {
         ProdutoEntity product = PRODUTOS.stream()
                 .filter(p -> p.getId().equals(id))
                 .findAny()
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new NotFoundException("Product not found"));
         product.setName(produtoDTO.getName());
         product.setPreco(produtoDTO.getPreco());
         product.setQuantidade(produtoDTO.getQuantidade());

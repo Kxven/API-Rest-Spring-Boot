@@ -2,6 +2,7 @@ package br.com.keven.spring_boot_essentials.controller;
 
 import br.com.keven.spring_boot_essentials.database.model.ProdutoEntity;
 import br.com.keven.spring_boot_essentials.dto.ProdutoDTO;
+import br.com.keven.spring_boot_essentials.exception.NotFoundException;
 import br.com.keven.spring_boot_essentials.service.ProdutoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class ProdutoController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ProdutoEntity updateProduct(@PathVariable Integer id,
-                                       @RequestBody ProdutoDTO produtoDTO){
+                                       @RequestBody ProdutoDTO produtoDTO) throws NotFoundException {
         return produtoService.updateProduct(produtoDTO, id);
     }
 
